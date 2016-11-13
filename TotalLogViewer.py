@@ -1,6 +1,5 @@
 ﻿import numpy as np
 import sys
-import pylab as pl
 from matplotlib import font_manager
 from matplotlib import _pylab_helpers
 from matplotlib.backends.backend_agg import FigureCanvasAgg
@@ -46,9 +45,9 @@ def main():
     line2 = ax1.plot(results_H[:,0], results_H[:,2] * 0.5, color = 'g', label = u"プロペラ回転数")
     line3 = ax1r.plot(results_H[:,0], results_H[:,3], color = 'b', label = u"対気速度")
     line4 = ax1r.plot(results_H[:,0], results_H[:,4], color = 'k', label = u"対地高度")
-    ax1.set_yticks(pl.arange(0.0, 150.1, 50.0))
+    ax1.set_yticks(np.arange(0.0, 150.1, 50.0))
     ax1.set_ylim(0.0,150.0)
-    ax1r.set_yticks(pl.arange(0.0, 15.1, 5.0))
+    ax1r.set_yticks(np.arange(0.0, 15.1, 5.0))
     ax1r.set_ylim(0.0,15.0)
     formatter = ticker.FormatStrFormatter('%0.0f')
     ax1.xaxis.set_major_formatter(formatter)
@@ -62,10 +61,10 @@ def main():
     
     canvas = FigureCanvasAgg(fig)  
        
-    pl.figure(1, figsize=figsize)
+    plt.figure(1, figsize=figsize)
     figManager = _pylab_helpers.Gcf.get_active()
     figManager.canvas.figure = fig
-    pl.show()
+    plt.show()
 
 if __name__ == '__main__':
     main()

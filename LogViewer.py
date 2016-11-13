@@ -2,7 +2,6 @@
 import sys
 import math
 from scipy.interpolate import interp1d
-import pylab as pl
 from matplotlib import font_manager
 from matplotlib import _pylab_helpers
 from matplotlib.backends.backend_agg import FigureCanvasAgg
@@ -145,9 +144,9 @@ def main():
     line3 = ax1r.plot(results_H[0], results_H[3], color = 'b', label = u"対気速度")
     line4 = ax1r.plot(results_G[0], GS, color = 'c', label = u"対地速度")
     line5 = ax1r.plot(results_H[0], results_H[4], color = 'k', label = u"対地高度")
-    ax1.set_yticks(pl.arange(0.0, 150.1, 50.0))
+    ax1.set_yticks(np.arange(0.0, 150.1, 50.0))
     ax1.set_ylim(0.0,150.0)
-    ax1r.set_yticks(pl.arange(0.0, 15.1, 5.0))
+    ax1r.set_yticks(np.arange(0.0, 15.1, 5.0))
     ax1r.set_ylim(0.0,15.0)
     ax1.set_title(argvs[1] + "\\" + argvs[2], fontproperties=font_prop)
     ax1.set_xlabel('')
@@ -167,7 +166,7 @@ def main():
         line6 = ax2.plot(results_N[0], results_N[9] + pitch_offset, color = 'r', label = u"ピッチ角") 
         line7 = ax2.plot(results_N[0], results_N[8] + roll_offset, color = 'b', label = u"ロール角")       
     line5 = ax2r.plot(results_N[0], results_N[7] + yaw_offset, color = 'g', label = u"ヨー角")
-    ax2.set_yticks(pl.arange(-25.0, 25.0, 5.0))
+    ax2.set_yticks(np.arange(-25.0, 25.0, 5.0))
     ax2.set_ylim(-25.0,25.0)
     ax2.set_xlabel('')
     ax2.set_ylabel(u"ピッチ角[deg.]\nロール角[deg.]", fontproperties=font_prop)
@@ -181,7 +180,7 @@ def main():
     line10 = ax3.plot(results_H[0], results_H[7] + elevetor_offset, color = 'r', label = u"エレベータ舵角")
     line8 = ax3.plot(results_H[0], results_H[5] + aileron_offset, color = 'b', label = u"エルロン舵角")
     line9 = ax3.plot(results_H[0], results_H[6] + rudder_offset, color = 'g', label = u"ラダー舵角")
-    ax3.set_yticks(pl.arange(-25.0, 25.0, 5.0))
+    ax3.set_yticks(np.arange(-25.0, 25.0, 5.0))
     ax3.set_ylim(-25.0, 25.0)
     ax3.set_xlabel(u"GPS時刻[s]", fontproperties=font_prop)
     ax3.set_ylabel(u"エレベータ舵角[deg.]\nエルロン舵角[deg.]\nラダー舵角[deg.]", fontproperties=font_prop)
@@ -191,10 +190,10 @@ def main():
     canvas = FigureCanvasAgg(fig)
     canvas.print_figure(argvs[1] + "\\" + argvs[2] + "_out.png", dpi=80)
        
-    pl.figure(1, figsize=figsize)
+    plt.figure(1, figsize=figsize)
     figManager = _pylab_helpers.Gcf.get_active()
     figManager.canvas.figure = fig
-    pl.show()
+    plt.show()
 
 if __name__ == '__main__':
     main()
