@@ -1,6 +1,6 @@
 ### Simple Log Viewer in Python
 Libraries used in this script: numpy, scipy, pylab and matplotlib  
-This script is checked with Python(x,y) 2.7.6.1 <https://code.google.com/p/pythonxy/>.
+This script is checked with Anaconda 4.3.17 <https://www.continuum.io/downloads>.
 
 #### TotalLogViewer.py
 Log viewer script for H page.  
