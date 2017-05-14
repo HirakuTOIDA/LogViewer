@@ -15,7 +15,7 @@ def main():
     
     # デバッグプリント
     if (argc != 3):   # 引数が足りない場合は、その旨を表示
-        print 'Usage: # python %s basedir basename' % argvs[0]
+        print('Usage: # python %s basedir basename' % argvs[0])
         quit()         # プログラムの終了
         
     calib = calibration.calibration()

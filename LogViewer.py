@@ -58,7 +58,7 @@ def main():
     
     # デバッグプリント
     if (argc != 3):   # 引数が足りない場合は、その旨を表示
-        print 'Usage: # python %s basedir basename' % argvs[0]
+        print('Usage: # python %s basedir basename' % argvs[0])
         quit()         # プログラムの終了
         
     calib = calibration.calibration()
@@ -83,14 +83,15 @@ def main():
     GS=[]
     for i in range(len(results_G[6])):
         GS.append(math.sqrt(results_G[6][i]*results_G[6][i]+results_G[7][i]*results_G[7][i]))
-    np.savetxt(outname, zip(*results_G), delimiter=',') 
+#    np.savetxt(outname, zip(*results_G), delimiter=',') 
+    np.savetxt(outname, np.transpose(results_G), delimiter=',') 
 
     #Aページ 
     inname = basedir2 + argvs[2] + "_A.csv"
     outname = basedir2 + argvs[2] + "_A_out.csv"
     d = np.loadtxt(inname, delimiter=',')
     results_A = read_page(d, computed_time, "A")
-    np.savetxt(outname, zip(*results_A), delimiter=',')
+    np.savetxt(outname, np.transpose(results_A), delimiter=',')
     
     #Mページ
     inname = basedir2 + argvs[2] + "_M.csv"
@@ -98,7 +99,7 @@ def main():
     d = np.loadtxt(inname, delimiter=',') 
     d[:,0] += ( d[:,1] * 0.04)  #indexを処理
     results_M = read_page(d, computed_time, "M")
-    np.savetxt(outname, zip(*results_M), delimiter=',')
+    np.savetxt(outname, np.transpose(results_M), delimiter=',')
     
     #Hページ
     inname = basedir1 + argvs[2] + "_H.csv"
@@ -113,7 +114,7 @@ def main():
     results_H[5] = (results_H[5] - calib.aileron2) / calib.adcmax * calib.encordermax * calib.aileron1
     results_H[6] = -(results_H[6] - calib.rudder2) / calib.adcmax * calib.encordermax * calib.rudder1
     results_H[7] = (results_H[7] - calib.elevetor2) / calib.adcmax * calib.encordermax * calib.elevetor1
-    np.savetxt(outname, zip(*results_H), delimiter=',')
+    np.savetxt(outname, np.transpose(results_H), delimiter=',')
 
     #Nページ
     inname = basedir2 + argvs[2] + "_N.csv"
@@ -124,7 +125,7 @@ def main():
             if d[i,7] < 0:
                 d[i,7] += 360.0
     results_N = read_page(d, computed_time, "N")
-    np.savetxt(outname, zip(*results_N), delimiter=',')
+    np.savetxt(outname, np.transpose(results_N), delimiter=',')
 
     #グラフ描画
     font_path = "C:\Windows\Fonts\meiryo.ttc"
@@ -152,7 +153,7 @@ def main():
     ax1.set_xlabel('')
     ax1.set_ylabel(u"クランク回転数[rpm]\nプロペラ回転数[x0.5rpm]", fontproperties=font_prop)
     ax1r.set_ylabel(u"対気速度[m/s]\n対地高度[m]", fontproperties=font_prop)
-    ax1.set_xticklabels('', False)
+    ax1.tick_params(labelbottom = 'off')
     ax1.grid(True)
     ax1.legend(prop=font_prop, bbox_to_anchor=(0.885, 1.0), loc=2, borderaxespad=0., frameon = False)
     ax1r.legend(prop=font_prop, bbox_to_anchor=(0.885, 0.815), loc=2, borderaxespad=0., frameon = False)
@@ -171,7 +172,7 @@ def main():
     ax2.set_xlabel('')
     ax2.set_ylabel(u"ピッチ角[deg.]\nロール角[deg.]", fontproperties=font_prop)
     ax2r.set_ylabel(u"ヨー角[deg.]", fontproperties=font_prop)
-    ax2.set_xticklabels('', False)
+    ax2.tick_params(labelbottom = 'off')
     ax2.grid(True) 
     ax2.legend(prop=font_prop, bbox_to_anchor=(0.885, 1.0), loc=2, borderaxespad=0., frameon = False)
     ax2r.legend(prop=font_prop, bbox_to_anchor=(0.885, 0.815), loc=2, borderaxespad=0., frameon = False)
