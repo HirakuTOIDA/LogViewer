@@ -1,8 +1,8 @@
 ﻿import numpy as np
 import sys
 from matplotlib import font_manager
-from matplotlib import _pylab_helpers
-from matplotlib.backends.backend_agg import FigureCanvasAgg
+#from matplotlib import _pylab_helpers
+#from matplotlib.backends.backend_agg import FigureCanvasAgg
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import calibration
@@ -59,11 +59,11 @@ def main():
     ax1.legend(prop=font_prop, bbox_to_anchor=(0.885, 1.0), loc=2, borderaxespad=0., frameon = False)
     ax1r.legend(prop=font_prop, bbox_to_anchor=(0.885, 0.935), loc=2, borderaxespad=0., frameon = False)
     
-    canvas = FigureCanvasAgg(fig)  
+#    canvas = FigureCanvasAgg(fig)  
        
     plt.figure(1, figsize=figsize)
-    figManager = _pylab_helpers.Gcf.get_active()
-    figManager.canvas.figure = fig
+#    figManager = _pylab_helpers.Gcf.get_active()
+#    figManager.canvas.figure = fig
     plt.show()
 
 if __name__ == '__main__':
